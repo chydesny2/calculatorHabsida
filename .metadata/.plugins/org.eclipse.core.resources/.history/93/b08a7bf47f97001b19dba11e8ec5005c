@@ -1,0 +1,26 @@
+package mainBranch;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Variable {
+	private String value;
+	public boolean isNumeric(String string) {
+		boolean flag = true;
+		for (int i = 0; i < string.length(); i++)
+		{
+			if (!Character.isDigit(string.charAt(i))) {
+				flag = false;
+				break;
+			}
+		}
+		return flag;
+	}
+	public boolean isRoman(String string) {
+		ArrayList<String> possibleValues =
+			    new ArrayList<>(Arrays.asList("I", "II", "III", "IV", "V", "VI", "VII","VIII","IX","X"));
+		if (possibleValues.contains(string)) return true;
+		else
+		return false;
+	}
+}

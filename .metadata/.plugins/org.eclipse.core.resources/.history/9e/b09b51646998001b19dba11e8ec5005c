@@ -1,0 +1,109 @@
+package mainBranch;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Input {
+	private String rawLine;
+	private ArrayList<String> operands = new ArrayList<>(Arrays.asList("+", "-", "/", "*"));
+	private ArrayList<String> romanNums = new ArrayList<>(Arrays.asList("I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"));
+	public String checkErrors() {
+		String verdict = "";
+		
+		//split the Line by operands
+		ArrayList<String> splittedLine = new ArrayList<>(Arrays.asList(rawLine.split("\\+|\\-|\\*|\\/")));
+		
+		//more than 2 variables check
+		if (splittedLine.size() > 2) 
+			verdict += "More than 2 variables. ";
+		//less than 2 variables check
+		if (splittedLine.size() < 2)
+			verdict += "Less than 2 variables. ";
+		//ordinary flag
+		boolean flag = true;
+		//check if all elements are Arab numerals	
+		for (int i = 0; i < splittedLine.size(); i++)
+		{
+			try 
+			{
+				double d = Double.parseDouble(splittedLine.get(i));
+			}
+				catch (NumberFormatException nfe) {
+			        flag = false;
+			        break;
+			    }
+		}
+		//if all elements aren't Arab numerics, check if they are Roman numerals
+		if (flag == false)
+		{
+			for (int i = 0; i < splittedLine.size(); i++)
+			{
+				if (!romanNums.contains(splittedLine.get(i).trim()))
+				{
+					verdict += "The variables input are neither entirely Arab nor entirely Roman numerals";
+					break;
+				}
+			}
+		}
+		
+		
+		return verdict;
+	}
+	
+	//the method that returns two variables
+	public ArrayList<Variable> getVariables() {		
+			ArrayList<Variable> variables = new ArrayList<>();
+			ArrayList<String> splittedLine = new ArrayList<>(Arrays.asList(rawLine.split("\\+|\\-|\\*|\\/")));
+			for (int i = 0; i < splittedLine.size(); i++)
+			{
+				variables.add(new Variable(splittedLine.get(i)));
+			}
+		return variables;
+	}
+	
+	
+	//checks if all vars are Roman
+	public boolean areRoman()
+	{
+		for (Variable v : this.getVariables())
+			if (!v.isRoman()) return false;
+		return true;
+	}
+	
+	//checks if all vars are Arabic
+	public boolean areArabic()
+	{
+		for (Variable v : this.getVariables())
+			if (!v.isNumeric()) return false;
+		return true; 
+	}
+	
+	//just do the summ
+	public double doSumm() {
+		int summ = 0;
+		for (Variable v : this.getVariables()) {
+			summ += v.getValue();
+		}
+		return summ;
+	}
+	
+	public double doSubtr() {
+		
+	}
+	
+	
+	
+	
+	
+	//constructor
+	public Input(String rawLine) {
+		this.rawLine = rawLine;
+	}
+	
+	//null constructor
+	public Input() {
+		
+	}
+	
+	
+}

@@ -1,0 +1,56 @@
+package mainBranch;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Variable {
+	private String value;
+	
+	//checks if the variable consists of Arabic numbers
+	public boolean isNumeric() {
+		boolean flag = true;
+		for (int i = 0; i < this.value.length(); i++)
+		{
+			if (!Character.isDigit(this.value.charAt(i))) {
+				flag = false;
+				break;
+			}
+		}
+		return flag;
+	}
+	
+	//checks if the variable consists of Roman numbers
+	public boolean isRoman() {
+		ArrayList<String> possibleValues =
+			    new ArrayList<>(Arrays.asList("I", "II", "III", "IV", "V", "VI", "VII","VIII","IX","X"));
+		if (possibleValues.contains(this.value)) return true;
+		else
+		return false;
+	}
+	
+	public double romanToArabic() {
+		switch(this.value) {
+		  case "I": return 1; 
+		  case "II": return 2; 
+		  case "III": return 3; 
+		  case "IV": return 4; 
+		  case "V": return 5;
+		  case "VI": return 6;
+		  case "VII": return 7;
+		  case "VIII": return 8;
+		  case "IX": return 9;
+		  case "X": return 10;
+		  default: return 0;
+		}
+	}
+	
+	
+	//String constructor
+	public Variable(String value) {
+		super();
+		this.value = value;
+	}
+	
+	
+	
+}

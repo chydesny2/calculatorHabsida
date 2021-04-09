@@ -1,0 +1,5 @@
+package mainBranch;
+
+public class ComplexError extends Exception {
+
+}

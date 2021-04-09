@@ -1,0 +1,9 @@
+package mainBranch;
+
+public class ComplexError extends Exception {
+
+	public ComplexError(String verdict) {
+		// TODO Auto-generated constructor stub
+	}
+
+}
